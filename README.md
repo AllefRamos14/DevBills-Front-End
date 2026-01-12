@@ -32,13 +32,13 @@ Permite:
 ## 🎬 Demonstração Animada
 
 ### 🏠 Tela Inicial
-![Tela Inicial GIF](./assets/Tela-de-Home.png)
+![Tela Inicial](./assets/Tela-de-Home.png)
 
 ### ➕ Nova Transação
-![Nova Transação GIF](./asset/Tela-de-nova-transaçoes.png)
+![Nova Transação](./assets/Tela-de-nova-transaçoes.png)
 
 ### 📊 Resumo Financeiro
-![Resumo GIF](./assets/Tela-de-Dashboard.png)
+![Resumo](./assets/Tela-de-Dashboard.png)
 
 
 ---
