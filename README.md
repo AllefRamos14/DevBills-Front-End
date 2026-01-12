@@ -32,13 +32,13 @@ Permite:
 ## 🎬 Demonstração Animada
 
 ### 🏠 Tela Inicial
-![Tela Inicial](./docs/home.png)
+<img src="./docs/images/Tela-de-Home.png" alt="Tela Inicial" width="400"/>
 
-### ➕ Nova Transação
-![Nova Transação](./docs/Tela-de-nova-transacoes.png)
+### ➕ Nova Transacao
+<img src="./docs/images/Tela-de-nova-transacoes.png" alt="Nova Transacao" width="400"/>
 
 ### 📊 Resumo Financeiro
-![Resumo](./docs/dashboard.png)
+<img src="./docs/images/Tela-de-Dashboard.png" alt="Resumo" width="400"/>
 
 
 ---
