@@ -1,69 +1,40 @@
-# React + TypeScript + Vite
+# DevBills - Front-End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner](./assets/banner.png) <!-- Coloque uma imagem/banner do projeto -->
 
-Currently, two official plugins are available:
+## 📌 Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+DevBills é uma aplicação Front-End para **controle de finanças pessoais**, permitindo cadastrar receitas, despesas e visualizar relatórios de forma intuitiva e responsiva.  
 
-## Expanding the ESLint configuration
+O projeto foi desenvolvido com **React, Vite e TailwindCSS**, seguindo boas práticas de organização de componentes e estilização.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## ⚡ Tecnologias Utilizadas
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- [React](https://reactjs.org/)  
+- [Vite](https://vitejs.dev/)  
+- [TailwindCSS](https://tailwindcss.com/)  
+- [React Router](https://reactrouter.com/)  
+- [React Toastify](https://fkhadra.github.io/react-toastify/)  
+- [Axios](https://axios-http.com/) (para requisições à API)  
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🎬 Demonstração
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+![Tela Inicial](./assets/screenshot-home.png)  
+![Nova Transação](./assets/screenshot-new.png)  
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Você pode acessar a demo hospedada no GitHub Pages:  
+🔗 [https://seu-usuario.github.io/DevBills-Front-End](https://seu-usuario.github.io/DevBills-Front-End)
+
+---
+
+## 💻 Instalação e Execução
+
+Clone o repositório:  
+
+```bash
+git clone https://github.com/AllefRamos14/DevBills-Front-End.git
+cd DevBills-Front-End
