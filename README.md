@@ -1,6 +1,6 @@
 # 🚀 DevBills - Controle de Finanças Pessoais
 
-![Banner DevBills](./assets/banner.png)
+
 
 Olá! Eu sou o **DevBills**, seu assistente para organizar **receitas e despesas** de forma prática, rápida e visual! 💰📊  
 
