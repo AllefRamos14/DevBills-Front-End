@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# 🚀 DevBills - Controle de Finanças Pessoais
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Banner DevBills](./assets/banner.png)
 
-Currently, two official plugins are available:
+Olá! Eu sou o **DevBills**, seu assistente para organizar **receitas e despesas** de forma prática, rápida e visual! 💰📊  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 💡 Sobre o Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+DevBills é uma aplicação **Front-End** feita com **React + Vite + TailwindCSS**.  
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Permite:
+- Registrar **receitas e despesas** 📝  
+- Visualizar **saldo atualizado** 💵  
+- Filtrar por **categorias** 🎯  
+- Receber **notificações** de ações com Toastify 🔔  
+- Acessar de qualquer tela, pois é **100% responsivo** 📱💻  
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠 Tecnologias Utilizadas
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Toastify](https://img.shields.io/badge/React_Toastify-FF6F61?style=for-the-badge&logo=react&logoColor=white)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🎬 Demonstração Animada
+
+### 🏠 Tela Inicial
+![Tela Inicial](./assets/Tela-de-Home.png)
+
+### ➕ Nova Transação
+![Nova Transação](./assets/Tela-de-nova-transacoes.png)
+
+### 📊 Resumo Financeiro
+![Resumo](./assets/Tela-de-Dashboard.png)
+
+
+---
+
+## ⚡ Funcionalidades
+
+- ✅ Cadastrar receitas e despesas  
+- ✅ Categorias personalizadas  
+- ✅ Visualizar saldo em tempo real  
+- ✅ Filtros por período e tipo  
+- ✅ Notificações com Toastify  
+- ✅ Responsivo (desktop e mobile)
+
+---
+
+## 💻 Como Rodar Localmente
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/AllefRamos14/DevBills-Front-End.git
+cd DevBills-Front-End
