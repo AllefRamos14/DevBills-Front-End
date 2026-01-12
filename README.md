@@ -35,7 +35,7 @@ Permite:
 ![Tela Inicial](./assets/Tela-de-Home.png)
 
 ### ➕ Nova Transação
-![Nova Transação](./assets/Tela-de-nova-transaçoes.png)
+![Nova Transação](./assets/Tela-de-nova-transacoes.png)
 
 ### 📊 Resumo Financeiro
 ![Resumo](./assets/Tela-de-Dashboard.png)
