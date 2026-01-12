@@ -32,15 +32,14 @@ Permite:
 ## 🎬 Demonstração Animada
 
 ### 🏠 Tela Inicial
-![Tela Inicial GIF](./assets/demo-home.gif)
+![Tela Inicial GIF](./assets/Tela-de-Home.png)
 
 ### ➕ Nova Transação
-![Nova Transação GIF](./assets/demo-new-transaction.gif)
+![Nova Transação GIF](./asset/Tela-de-nova-transaçoes.png)
 
 ### 📊 Resumo Financeiro
-![Resumo GIF](./assets/demo-summary.gif)
+![Resumo GIF](./assets/Tela-de-Dashboard.png)
 
-> Experimente online: 🔗 [Demo no GitHub Pages](https://seu-usuario.github.io/DevBills-Front-End)
 
 ---
 
