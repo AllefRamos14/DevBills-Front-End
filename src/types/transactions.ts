@@ -29,7 +29,7 @@ export interface TransactionSummary {
 	expensesByCategory: CategorySummary[];
 }
 
-export interface MothlyItem {
+export interface MonthlyItem {
 	name: string;
 	expenses: number;
 	income: number;

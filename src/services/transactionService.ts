@@ -1,5 +1,5 @@
 import type {
-	MothlyItem,
+	MonthlyItem,
 	Transaction,
 	TransactionFilter,
 	TransactionSummary,
@@ -29,7 +29,7 @@ export const getTransactionsMontly = async (
 	month: number,
 	year: number,
 	months?: number,
-): Promise<{ history: MothlyItem[] }> => {
+): Promise<{ history: MonthlyItem[] }> => {
 	const response = await api.get("/transactions/historical", {
 		params: {
 			month,

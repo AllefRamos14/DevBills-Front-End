@@ -24,7 +24,7 @@ import {
 	getTransactionsMontly,
 	getTransactionsSummary,
 } from "../services/transactionService";
-import type { MothlyItem, TransactionSummary } from "../types/transactions";
+import type { MonthlyItem, TransactionSummary } from "../types/transactions";
 import { formatCurrency } from "../utils/formatters";
 
 const initialSummary: TransactionSummary = {
@@ -40,7 +40,7 @@ const Dashboard = () => {
 	const [year, setYear] = useState<number>(currentDate.getFullYear());
 	const [month, setMonth] = useState(currentDate.getMonth() + 1);
 	const [summary, setSummary] = useState<TransactionSummary>(initialSummary);
-	const [monthlyItemData, setMonthlyItemsData] = useState<MothlyItem[]>([]);
+	const [monthlyItemData, setMonthlyItemsData] = useState<MonthlyItem[]>([]);
 
 	useEffect(() => {
 		async function loadTransactionsSummary() {
