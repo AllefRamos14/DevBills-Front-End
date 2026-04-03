@@ -79,7 +79,7 @@ const Dashboard = () => {
 		return `${name}: ${(percent * 100).toFixed(1)}%`;
 	};
 
-	const getNumericValue = (value: ValueType): number | null => {
+	const getNumericValue = (value: ValueType | undefined): number | null => {
 		if (value === undefined || value === null) return null;
 
 		if (Array.isArray(value)) {
@@ -92,10 +92,19 @@ const Dashboard = () => {
 		return Number.isNaN(num) ? null : num;
 	};
 
-	const formatTooltipCurrency = (value: ValueType, name: NameType): string => {
+	// const formatTooltipCurrency = (value: ValueType, name: NameType): string => {
+	// 	const num = getNumericValue(value);
+	// 	if (num === null) return "-";
+	// 	return `${name}: ${formatCurrency(num)}`;
+	// };
+
+	const formatTooltipCurrency = (
+		value: ValueType | undefined,
+		name: NameType,
+	): string => {
 		const num = getNumericValue(value);
 		if (num === null) return "-";
-		return `${name}: ${formatCurrency(num)}`;
+		return `${String(name)}: ${formatCurrency(num)}`;
 	};
 
 	return (
