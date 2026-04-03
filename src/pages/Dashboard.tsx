@@ -92,19 +92,15 @@ const Dashboard = () => {
 		return Number.isNaN(num) ? null : num;
 	};
 
-	// const formatTooltipCurrency = (value: ValueType, name: NameType): string => {
-	// 	const num = getNumericValue(value);
-	// 	if (num === null) return "-";
-	// 	return `${name}: ${formatCurrency(num)}`;
-	// };
-
 	const formatTooltipCurrency = (
 		value: ValueType | undefined,
-		name: NameType,
+		name: NameType | undefined,
 	): string => {
 		const num = getNumericValue(value);
 		if (num === null) return "-";
-		return `${String(name)}: ${formatCurrency(num)}`;
+
+		const label = name ?? "Valor";
+		return `${String(label)}: ${formatCurrency(num)}`;
 	};
 
 	return (
