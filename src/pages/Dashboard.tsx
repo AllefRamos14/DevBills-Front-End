@@ -14,6 +14,10 @@ import {
 	XAxis,
 	YAxis,
 } from "recharts";
+import type {
+	NameType,
+	ValueType,
+} from "recharts/types/component/DefaultTooltipContent";
 import CardResumo from "../components/card";
 import MonthYearSelect from "../components/MonthYearSelect";
 import {
@@ -43,9 +47,8 @@ const Dashboard = () => {
 			try {
 				const response = await getTransactionsSummary(month, year);
 				setSummary(response);
-				console.log(response);
-			} catch (error) {
-				console.log(error);
+			} catch (error: unknown) {
+				console.error("Erro ao carregar resumo:", error);
 			}
 		}
 
@@ -56,10 +59,9 @@ const Dashboard = () => {
 		async function loadTransactionsMontly() {
 			try {
 				const response = await getTransactionsMontly(month, year, 4);
-				console.log(response);
 				setMonthlyItemsData(response.history);
-			} catch (error) {
-				console.log(error);
+			} catch (error: unknown) {
+				console.error("Erro ao carregar histórico mensal:", error);
 			}
 		}
 
@@ -67,7 +69,7 @@ const Dashboard = () => {
 	}, [month, year]);
 
 	const chartData = summary.expensesByCategory.map((item) => ({
-		name: item.categoryName, // <=
+		name: item.categoryName,
 		amount: item.amount,
 		color: item.categoryColor,
 	}));
@@ -77,8 +79,23 @@ const Dashboard = () => {
 		return `${name}: ${(percent * 100).toFixed(1)}%`;
 	};
 
-	const formatToolTipValeu = (value: number | string): string => {
-		return formatCurrency(typeof value === "number" ? value : 0);
+	const getNumericValue = (value: ValueType): number | null => {
+		if (value === undefined || value === null) return null;
+
+		if (Array.isArray(value)) {
+			const firstValue = value[0];
+			const num = typeof firstValue === "number" ? firstValue : Number(firstValue);
+			return Number.isNaN(num) ? null : num;
+		}
+
+		const num = typeof value === "number" ? value : Number(value);
+		return Number.isNaN(num) ? null : num;
+	};
+
+	const formatTooltipCurrency = (value: ValueType, name: NameType): string => {
+		const num = getNumericValue(value);
+		if (num === null) return "-";
+		return `${name}: ${formatCurrency(num)}`;
 	};
 
 	return (
@@ -93,6 +110,7 @@ const Dashboard = () => {
 					onYearChange={setYear}
 				/>
 			</div>
+
 			<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 				<CardResumo
 					icon={<Wallet size={20} className="text-primary-500" />}
@@ -101,9 +119,9 @@ const Dashboard = () => {
 					glowEffect={summary.balance > 0}
 				>
 					<p
-						className={`text-2x1 font-semibold mt-2
-				${summary.balance > 0 ? "text-primary-500" : "text-red-600"}
-				`}
+						className={`text-2x1 font-semibold mt-2 ${
+							summary.balance > 0 ? "text-primary-500" : "text-red-600"
+						}`}
 					>
 						{formatCurrency(summary.balance)}
 					</p>
@@ -133,12 +151,12 @@ const Dashboard = () => {
 			<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 mt-3">
 				<CardResumo
 					icon={<TrendingUp size={20} className="text-primary-500" />}
-					title="Despensas pro Categoria"
+					title="Despesas por Categoria"
 					className="min-h-80"
 				>
 					{summary.expensesByCategory.length > 0 ? (
 						<div className="h-72 mt-4">
-							<ResponsiveContainer width="100%" height={300} aspect={2}>
+							<ResponsiveContainer width="100%" height={300}>
 								<PieChart>
 									<Pie
 										data={chartData}
@@ -153,7 +171,7 @@ const Dashboard = () => {
 											<Cell key={entry.categoryId} fill={entry.categoryColor} />
 										))}
 									</Pie>
-									<Tooltip formatter={formatToolTipValeu} />
+									<Tooltip formatter={formatTooltipCurrency} />
 								</PieChart>
 							</ResponsiveContainer>
 						</div>
@@ -169,39 +187,40 @@ const Dashboard = () => {
 					title="Histórico Mensal"
 					className="min-h-80"
 				>
-					<div className=" h-72 mt-4">
+					<div className="h-72 mt-4">
 						{monthlyItemData.length > 0 ? (
-							<div>
-								<ResponsiveContainer width="100%" height={300}>
-									<BarChart data={monthlyItemData} margin={{ left: 30 }}>
-										<CartesianGrid
-											strokeDasharray="3 3"
-											stroke="rgba(255,255,255,0.1)"
-										/>
-										<XAxis
-											dataKey="name"
-											stroke="#94A3B8"
-											tick={{ style: { textTransform: "capitalize" } }}
-										/>
-										<YAxis
-											stroke="#94A3B8"
-											tickFormatter={formatCurrency}
-											tick={{ style: { fontSize: 14 } }}
-										/>
-										<Tooltip
-											formatter={formatCurrency}
-											contentStyle={{
-												backgroundColor: "#1A1A1A",
-												borderColor: "#2A2A2A",
-											}}
-											labelStyle={{ color: "#f8f8f8" }}
-										/>
-										<Legend />
-										<Bar dataKey="expenses" name="Despesas" fill="#FF6384" />
-										<Bar dataKey="income" name="Receitas" fill="#37E359" />
-									</BarChart>
-								</ResponsiveContainer>
-							</div>
+							<ResponsiveContainer width="100%" height={300}>
+								<BarChart data={monthlyItemData} margin={{ left: 30 }}>
+									<CartesianGrid
+										strokeDasharray="3 3"
+										stroke="rgba(255,255,255,0.1)"
+									/>
+									<XAxis
+										dataKey="name"
+										stroke="#94A3B8"
+										tick={{ style: { textTransform: "capitalize" } }}
+									/>
+									<YAxis
+										stroke="#94A3B8"
+										tickFormatter={(value) => {
+											const num = typeof value === "number" ? value : Number(value);
+											return formatCurrency(Number.isNaN(num) ? 0 : num);
+										}}
+										tick={{ style: { fontSize: 14 } }}
+									/>
+									<Tooltip
+										formatter={formatTooltipCurrency}
+										contentStyle={{
+											backgroundColor: "#1A1A1A",
+											borderColor: "#2A2A2A",
+										}}
+										labelStyle={{ color: "#f8f8f8" }}
+									/>
+									<Legend />
+									<Bar dataKey="expenses" name="Despesas" fill="#FF6384" />
+									<Bar dataKey="income" name="Receitas" fill="#37E359" />
+								</BarChart>
+							</ResponsiveContainer>
 						) : (
 							<div className="flex items-center justify-center h-64 text-gray-500">
 								Nenhuma despesa registrada nesse período
