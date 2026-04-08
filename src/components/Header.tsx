@@ -1,6 +1,7 @@
 import { Activity } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import Buttonimg from "../assets/Button.png";
 import { useAuth } from "../context/Authcontext";
 
 const Header = () => {
@@ -92,7 +93,7 @@ const Header = () => {
 					</span>
 
 					<button type="button" onClick={handleLogout} className="cursor-pointer ">
-						<img src="/src/assets/Button.png" alt="Sair" />
+						<img src={Buttonimg} alt="Sair" />
 					</button>
 				</div>
 			</div>
