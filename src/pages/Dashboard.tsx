@@ -37,14 +37,12 @@ const initialSummary: TransactionSummary = {
 
 const Dashboard = () => {
 	const currentDate = new Date();
+	const { authState } = useAuth();
 
 	const [year, setYear] = useState<number>(currentDate.getFullYear());
 	const [month, setMonth] = useState(currentDate.getMonth() + 1);
 	const [summary, setSummary] = useState<TransactionSummary>(initialSummary);
 	const [monthlyItemData, setMonthlyItemsData] = useState<MonthlyItem[]>([]);
-
-	const { authState } = useAuth();
-	const { user, loading } = authState;
 
 	// useEffect(() => {
 	// 	async function loadTransactionsSummary() {
@@ -60,8 +58,8 @@ const Dashboard = () => {
 	// }, [month, year]);
 
 	useEffect(() => {
-		if (loading) return;
-		if (!user) return;
+		if (authState.loading) return;
+		if (!authState.user) return;
 
 		async function loadTransactionsSummary() {
 			try {
@@ -73,7 +71,7 @@ const Dashboard = () => {
 		}
 
 		loadTransactionsSummary();
-	}, [loading, user, month, year]);
+	}, [authState.loading, authState.user, month, year]);
 
 	// useEffect(() => {
 	// 	async function loadTransactionsMontly() {
@@ -89,8 +87,8 @@ const Dashboard = () => {
 	// }, [month, year]);
 
 	useEffect(() => {
-		if (loading) return;
-		if (!user) return;
+		if (authState.loading) return;
+		if (!authState.user) return;
 
 		async function loadTransactionsMontly() {
 			try {
@@ -102,7 +100,7 @@ const Dashboard = () => {
 		}
 
 		loadTransactionsMontly();
-	}, [loading, user, month, year]);
+	}, [authState.loading, authState.user, month, year]);
 
 	const chartData = summary.expensesByCategory.map((item) => ({
 		name: item.categoryName,
@@ -138,10 +136,6 @@ const Dashboard = () => {
 		const label = name ?? "Valor";
 		return `${String(label)}: ${formatCurrency(num)}`;
 	};
-
-	if (loading) {
-		return <p>Carregando autenticação...</p>;
-	}
 
 	return (
 		<div className="container-app py-6">
