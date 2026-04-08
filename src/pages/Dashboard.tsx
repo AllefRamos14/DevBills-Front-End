@@ -20,6 +20,7 @@ import type {
 } from "recharts/types/component/DefaultTooltipContent";
 import CardResumo from "../components/card";
 import MonthYearSelect from "../components/MonthYearSelect";
+import { useAuth } from "../context/Authcontext";
 import {
 	getTransactionsMontly,
 	getTransactionsSummary,
@@ -42,7 +43,26 @@ const Dashboard = () => {
 	const [summary, setSummary] = useState<TransactionSummary>(initialSummary);
 	const [monthlyItemData, setMonthlyItemsData] = useState<MonthlyItem[]>([]);
 
+	const { authState } = useAuth();
+	const { user, loading } = authState;
+
+	// useEffect(() => {
+	// 	async function loadTransactionsSummary() {
+	// 		try {
+	// 			const response = await getTransactionsSummary(month, year);
+	// 			setSummary(response);
+	// 		} catch (error: unknown) {
+	// 			console.error("Erro ao carregar resumo:", error);
+	// 		}
+	// 	}
+
+	// 	loadTransactionsSummary();
+	// }, [month, year]);
+
 	useEffect(() => {
+		if (loading) return;
+		if (!user) return;
+
 		async function loadTransactionsSummary() {
 			try {
 				const response = await getTransactionsSummary(month, year);
@@ -53,9 +73,25 @@ const Dashboard = () => {
 		}
 
 		loadTransactionsSummary();
-	}, [month, year]);
+	}, [loading, user, month, year]);
+
+	// useEffect(() => {
+	// 	async function loadTransactionsMontly() {
+	// 		try {
+	// 			const response = await getTransactionsMontly(month, year, 4);
+	// 			setMonthlyItemsData(response.history);
+	// 		} catch (error: unknown) {
+	// 			console.error("Erro ao carregar histórico mensal:", error);
+	// 		}
+	// 	}
+
+	// 	loadTransactionsMontly();
+	// }, [month, year]);
 
 	useEffect(() => {
+		if (loading) return;
+		if (!user) return;
+
 		async function loadTransactionsMontly() {
 			try {
 				const response = await getTransactionsMontly(month, year, 4);
@@ -66,7 +102,7 @@ const Dashboard = () => {
 		}
 
 		loadTransactionsMontly();
-	}, [month, year]);
+	}, [loading, user, month, year]);
 
 	const chartData = summary.expensesByCategory.map((item) => ({
 		name: item.categoryName,
@@ -102,6 +138,10 @@ const Dashboard = () => {
 		const label = name ?? "Valor";
 		return `${String(label)}: ${formatCurrency(num)}`;
 	};
+
+	if (loading) {
+		return <p>Carregando autenticação...</p>;
+	}
 
 	return (
 		<div className="container-app py-6">
